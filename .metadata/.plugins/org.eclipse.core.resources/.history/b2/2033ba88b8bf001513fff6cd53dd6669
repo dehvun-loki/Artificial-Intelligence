@@ -1,6 +1,5 @@
 import java.io.*;
 
-
 public class SamplePlayer {
     public static void main (String args[]) throws Exception {
         int width, height, numToWin, playerNumber, timeLimit, move;
@@ -23,13 +22,12 @@ public class SamplePlayer {
 
         int currentTurn = 0;	// first player starts
         while (true) {
-            int myTurn = 0; //used to figure out who goes first TODO fix this to be right
-            move = 0; //used to start game
+            int myTurn = 0;
 			if (currentTurn == myTurn) {
                 // TODO: use a mechanism for timeout(threads, java.util.Timer, ..)
 
                 // call alpha-beta algorithm to get the move
-                move = AlphaBetaPruning.getMove(height, width, numToWin, move);
+                move = getMove();
 
                 // send move
                 System.out.println(String.valueOf(move));
@@ -48,4 +46,8 @@ public class SamplePlayer {
         }
     }
 
+	private static int getMove() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

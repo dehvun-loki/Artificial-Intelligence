@@ -1,0 +1,9 @@
+
+public class AlphaBetaPruning {
+
+	public static void getMove() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
