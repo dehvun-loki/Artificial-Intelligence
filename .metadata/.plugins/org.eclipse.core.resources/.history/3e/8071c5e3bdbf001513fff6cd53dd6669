@@ -11,7 +11,7 @@ public class SamplePlayer {
 
         // send player name
         System.out.println("random-player");
-        //System.out.flush();
+        System.out.flush();
 
         // read game config
         String [] gameConfig = input.readLine().split(" ");
@@ -20,15 +20,14 @@ public class SamplePlayer {
         numToWin = Integer.parseInt(gameConfig[2]);
         playerNumber = Integer.parseInt(gameConfig[3]);
         timeLimit = Integer.parseInt(gameConfig[4]);
-        BoardState.makeBoard(width,height);
+
         int currentTurn = 0;	// first player starts
         while (true) {
             int myTurn = 0; //used to figure out who goes first TODO fix this to be right
             move = 0; //used to start game
 			if (currentTurn == myTurn) {
                 // TODO: use a mechanism for timeout(threads, java.util.Timer, ..)
-				
-                // call alpha-beta algorithm to get the move
+				BoardState.makeBoard(width,height);                // call alpha-beta algorithm to get the move
                 move = AlphaBetaPruning.getMove(height, width, numToWin, move);
 
                 // send move

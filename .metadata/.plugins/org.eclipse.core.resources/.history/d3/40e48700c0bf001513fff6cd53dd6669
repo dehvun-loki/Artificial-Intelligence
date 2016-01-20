@@ -27,7 +27,7 @@ public class SamplePlayer {
             move = 0; //used to start game
 			if (currentTurn == myTurn) {
                 // TODO: use a mechanism for timeout(threads, java.util.Timer, ..)
-				
+				BoardState.makeBoard(width,height);
                 // call alpha-beta algorithm to get the move
                 move = AlphaBetaPruning.getMove(height, width, numToWin, move);
 
