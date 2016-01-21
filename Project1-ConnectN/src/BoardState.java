@@ -1,6 +1,7 @@
 
 public class BoardState {
 	public static int[][] board = new int[7][6];
+	public int [][] possibleBoard = board;
 	
 	public static void makeBoard(int width, int height)
 	{
@@ -17,5 +18,14 @@ public class BoardState {
 		
 	}
 	
-	
+	public static void makeMove(int move, Boolean isFinal)
+	{
+		//if isFinal set actual board, else set possible board to use for searching
+		//set board to have a 0 or 1 dependent in the bottommost empty row in the column
+		
+	}
+	public static void deleteMove(int move)
+	{
+		//remove topmost filled space in the column specified
+	}
 }

@@ -1,0 +1,50 @@
+
+public class Heuristic {
+	public int evaluate(int move)
+	{
+		int playerNumber = 0;
+		if(winningMove(move))
+		{
+			if(playerNumber==0)//check whose turn it is TODO 
+			{
+				return 10; // if this players turn program wins
+			}
+			else return 0; // else other player wins
+		}
+		else if(stillPossibleToWin(move))
+		{
+			return furtherEvaluate(move);
+		}
+		else if(impossibleToWin(move))
+		{
+			return 0;
+		}
+		else 
+			return furtherEvaluate(move);
+	}
+	
+	
+	public Boolean winningMove(int move)
+	{
+		if(Evaluations.checkMaxChain(move)>=SamplePlayer.numToWin)
+		{
+			return true;
+		}
+		else return false;
+		
+	}
+	public Boolean stillPossibleToWin(int move)
+	{	
+		return Evaluations.checkMaxPossibleChain(move)>=SamplePlayer.numToWin;
+	}
+	public Boolean impossibleToWin(int move)
+	{
+		return false;
+	}
+	public int furtherEvaluate(int move)
+	{
+		BoardState.makeMove(move, false);
+		return evaluate(move);
+	}
+	
+}

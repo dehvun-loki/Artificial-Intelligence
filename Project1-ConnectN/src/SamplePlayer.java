@@ -2,9 +2,10 @@ import java.io.*;
 
 
 public class SamplePlayer {
-    public static void main (String args[]) throws Exception {
-        int width, height, numToWin, playerNumber, timeLimit, move;
+    public static int width, height, numToWin, playerNumber, timeLimit, move;
 
+	public static void main (String args[]) throws Exception {
+    
         // use BufferedReader for easy reading
         BufferedReader input = new BufferedReader(
             new InputStreamReader(System.in));

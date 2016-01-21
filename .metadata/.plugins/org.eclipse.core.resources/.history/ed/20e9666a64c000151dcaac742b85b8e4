@@ -1,0 +1,7 @@
+
+public class Evaluations {
+	public static int checkMaxChain(int move)
+	{
+		return 0;//Max chain length using move
+	}
+}
