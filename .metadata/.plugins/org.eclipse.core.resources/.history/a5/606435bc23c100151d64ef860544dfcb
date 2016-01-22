@@ -23,7 +23,6 @@ public class BoardState {
 		//if isFinal set actual board, else set possible board to use for searching
 		//set board to have a 0 or 1 dependent in the bottommost empty row in the column
 		
-		//Keeping track of board and moves
 	}
 	public static void deleteMove(int move)
 	{

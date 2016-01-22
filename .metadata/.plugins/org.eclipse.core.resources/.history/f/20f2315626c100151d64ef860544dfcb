@@ -1,0 +1,6 @@
+Stuff to Do:
+*Figure out and implement timerr
+*Write AlphaBetaPruning
+*Write MakeMove
+*Write DeleteMove
+*Make FindMove and Evaluate Move work nice together

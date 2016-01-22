@@ -1,6 +1,6 @@
 
 public class Heuristic {
-	public static int evaluate(int move)
+	public int evaluate(int move)
 	{
 		int playerNumber = 0;
 		if(winningMove(move))//checks for a winning move for either player
@@ -21,7 +21,7 @@ public class Heuristic {
 	}
 	
 	
-	public static Boolean winningMove(int move)
+	public Boolean winningMove(int move)
 	{
 		if(Evaluations.checkMaxChain(move)>=SamplePlayer.numToWin)
 		{
@@ -30,11 +30,11 @@ public class Heuristic {
 		else return false;
 		
 	}
-	public static Boolean stillPossibleToWin(int move)
+	public Boolean stillPossibleToWin(int move)
 	{	
 		return Evaluations.checkMaxPossibleChain(move)>=SamplePlayer.numToWin;
 	}
-	public static int furtherEvaluate(int move)
+	public int furtherEvaluate(int move)
 	{
 		BoardState.makeMove(move, false);
 		return evaluate(move);

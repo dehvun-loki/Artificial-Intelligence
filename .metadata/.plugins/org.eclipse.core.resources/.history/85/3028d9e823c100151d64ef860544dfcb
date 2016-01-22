@@ -5,8 +5,7 @@ import java.util.*;
 
 
 public class Loop {
-	public static int width, height, numToWin, playerNumber, timeLimit, move, currentTurn;
-	
+	public static int width, height, numToWin, playerNumber, timeLimit, move, board, currentTurn;
 	
 	public static void main() throws Exception{
         // use BufferedReader for easy reading
@@ -34,7 +33,7 @@ public class Loop {
                 // TODO: use a mechanism for timeout(threads, java.util.Timer, ..)
 				
                 // call alpha-beta algorithm to get the move
-                move = AlphaBetaPruning.getMove(height, width, numToWin, move, BoardState.board);
+                move = AlphaBetaPruning.getMove(height, width, numToWin, move, board);
 
                 // send move
                 System.out.println(String.valueOf(move));
@@ -56,11 +55,13 @@ public class Loop {
 
 	//Find the legal moves
 	public int FindLegalMove(){
-	
+		
+		int[][] board;
 		//Guessing this is the way to declare a variable holding an array of arrays of ints?
+		board = BoardState.board;
 
 		//Alpha Beta to find moves
-		AlphaBetaPruning.getMove(height, width, numToWin, move, BoardState.board);
+		AlphaBetaPruning.getMove(height, width, numToWin, move, board);
 		//where should all these variables be defined?
 		//Are we even using samplePlayer now that we have this class?
 		
@@ -76,6 +77,7 @@ public class Loop {
 		
 		//if FindLegalMove != null
 			currentMove = FindLegalMove();
+			
 			moveValue = Heuristic.evaluate(currentMove);
 			
 			

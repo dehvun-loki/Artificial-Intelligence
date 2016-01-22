@@ -34,7 +34,7 @@ public class Loop {
                 // TODO: use a mechanism for timeout(threads, java.util.Timer, ..)
 				
                 // call alpha-beta algorithm to get the move
-                move = AlphaBetaPruning.getMove(height, width, numToWin, move, BoardState.board);
+                move = AlphaBetaPruning.getMove(height, width, numToWin, move, board);
 
                 // send move
                 System.out.println(String.valueOf(move));
@@ -76,6 +76,7 @@ public class Loop {
 		
 		//if FindLegalMove != null
 			currentMove = FindLegalMove();
+			
 			moveValue = Heuristic.evaluate(currentMove);
 			
 			

@@ -76,6 +76,7 @@ public class Loop {
 		
 		//if FindLegalMove != null
 			currentMove = FindLegalMove();
+			
 			moveValue = Heuristic.evaluate(currentMove);
 			
 			
