@@ -1,0 +1,54 @@
+import java.io.*;
+import java.util.List;
+import java.util.Stack;
+
+//****I think I made this class wrong. I'm like 98% sure I needed to include interfaces 
+//but I forgot what those were when I made it and didn't add them. Now what? SOS.
+//Also, I think there's an import I need because I can't do lists
+
+
+public class Loop {
+	//Look at the board
+	public int GetBoard(){
+		//I wanted to have a statement to determine whether the move was the first
+		//if first move, generate first board; else take last generated board plus most recent move
+		//This way eliminates any need to pull the board from the interface
+		//Would still need to pull opponent's move (I think)
+		return 0;
+	}
+	
+	//Find the legal moves
+	public int FindLegalMove(){
+		
+		int board;
+		//Guessing this is the way to declare a variable holding an array of arrays of ints?
+		board = GetBoard();
+
+		
+		//Alpha Beta to find moves
+		//*****AlphaBetaPruning.getMove(height, width, numToWin, move, board);*****
+		//where should all these variables be defined?
+		//Are we even using samplePlayer now that we have this class?
+		
+		return 0;
+	}
+	//Find Value of moves
+	public int EvaluateMove(){	
+		int currentMove, moveValue;
+		Stack valueList = new Stack();
+		
+		currentMove = FindLegalMove();
+		
+		//******moveValue = Heuristic.evaluate(currentMove);*****
+		//This needs to be linked to the Heuristic class...see my above SOS.
+		
+		
+		//Store value in list
+		//*****
+		//Find max of list
+		
+		return 0;
+	}
+
+	
+}
