@@ -2,7 +2,7 @@ import java.io.*;
 
 
 public class SamplePlayer {
-    public static int width, height, numToWin, playerNumber, timeLimit, move;
+    public static int width, height, numToWin, playerNumber, timeLimit, move, board;
 
 	public static void main (String args[]) throws Exception {
     
@@ -22,6 +22,7 @@ public class SamplePlayer {
         playerNumber = Integer.parseInt(gameConfig[3]);
         timeLimit = Integer.parseInt(gameConfig[4]);
         BoardState.makeBoard(width,height);
+        
         int currentTurn = 0;	// first player starts
         while (true) {
             int myTurn = 0; //used to figure out who goes first TODO fix this to be right
@@ -30,7 +31,7 @@ public class SamplePlayer {
                 // TODO: use a mechanism for timeout(threads, java.util.Timer, ..)
 				
                 // call alpha-beta algorithm to get the move
-                move = AlphaBetaPruning.getMove(height, width, numToWin, move);
+                move = AlphaBetaPruning.getMove(height, width, numToWin, move, board);
 
                 // send move
                 System.out.println(String.valueOf(move));
