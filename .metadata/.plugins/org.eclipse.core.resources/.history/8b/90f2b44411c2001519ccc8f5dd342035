@@ -28,12 +28,11 @@ public class BoardState {
 		{
 			for(int i=move;i<=move;i++)
 			{
-				for(int j=0;j<=SamplePlayer.height;j++)
+				for(int j=0;j<SamplePlayer.height;j++)
 				{
-					if(board[j][i]==99)
+					if(board[i][j]==99)
 					{
-						board[j][i]=0;
-						break;
+						board[i][j]=0;
 					}
 				}	
 			}
@@ -41,7 +40,7 @@ public class BoardState {
 			
 			for(int i=SamplePlayer.width-1;i>=0;i--)
 			{
-				for(int j=0;j<SamplePlayer.height;j++)
+				for(int j=SamplePlayer.height-1;j>=0;j--)
 				{
 					System.out.printf("%5d",board[i][j]);
 				}

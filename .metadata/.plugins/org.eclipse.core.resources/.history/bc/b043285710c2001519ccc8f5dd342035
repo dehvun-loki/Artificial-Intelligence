@@ -24,30 +24,23 @@ public class BoardState {
 		//set board to have a 0 or 1 dependent in the bottommost empty row in the column
 		
 		//Keeping track of board and moves
-		if(isFinal)
+		
+		for(int j=SamplePlayer.height-1;j>=0;j--)
 		{
-			for(int i=move;i<=move;i++)
+			if(board[move][j]==99)
 			{
-				for(int j=0;j<=SamplePlayer.height;j++)
-				{
-					if(board[j][i]==99)
-					{
-						board[j][i]=0;
-						break;
-					}
-				}	
-			}
-
-			
-			for(int i=SamplePlayer.width-1;i>=0;i--)
-			{
-				for(int j=0;j<SamplePlayer.height;j++)
-				{
-					System.out.printf("%5d",board[i][j]);
-				}
-				System.out.println();
+				board[move][j]=0;
 			}
 		}
+		for(int i=SamplePlayer.width-1;i>=0;i--)
+		{
+			for(int j=SamplePlayer.height-1;j>=0;j--)
+			{
+				System.out.printf("%5d",board[i][j]);
+			}
+			System.out.println();
+		}
+		
 		
 	}
 	public static void deleteMove(int move)

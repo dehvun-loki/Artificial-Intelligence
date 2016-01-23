@@ -26,22 +26,16 @@ public class BoardState {
 		//Keeping track of board and moves
 		if(isFinal)
 		{
-			for(int i=move;i<=move;i++)
+			for(int j=0;j<SamplePlayer.height;j--)
 			{
-				for(int j=0;j<=SamplePlayer.height;j++)
+				if(board[move][j]==99)
 				{
-					if(board[j][i]==99)
-					{
-						board[j][i]=0;
-						break;
-					}
-				}	
+					board[move][j]=0;
+				}
 			}
-
-			
 			for(int i=SamplePlayer.width-1;i>=0;i--)
 			{
-				for(int j=0;j<SamplePlayer.height;j++)
+				for(int j=SamplePlayer.height-1;j>=0;j--)
 				{
 					System.out.printf("%5d",board[i][j]);
 				}

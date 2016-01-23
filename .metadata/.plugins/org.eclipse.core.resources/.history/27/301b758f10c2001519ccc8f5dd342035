@@ -23,9 +23,9 @@ public class SamplePlayer {
         timeLimit = Integer.parseInt(gameConfig[4]);
         BoardState.makeBoard(width,height);
         System.out.println();
-        BoardState.makeMove(1, true);
+        BoardState.makeMove(1, false);
         System.out.println();
-        BoardState.makeMove(1, true);
+        BoardState.makeMove(1, false);
         
         int currentTurn = 0;	// first player starts
         while (true) {
