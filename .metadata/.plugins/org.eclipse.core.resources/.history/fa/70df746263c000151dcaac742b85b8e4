@@ -1,7 +1,0 @@
-
-public class Evaluations {
-	public int checkMaxChain(int move)
-	{
-		return 0;//Max chain length using move
-	}
-}
