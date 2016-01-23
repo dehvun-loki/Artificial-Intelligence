@@ -20,6 +20,7 @@ public class BoardState {
 	
 	public static void makeMove(int move, Boolean isFinal)
 	{
+		Loop.numTurns++;
 		//if isFinal set actual board, else set possible board to use for searching
 		//set board to have a 0 or 1 dependent in the bottommost empty row in the column
 		
@@ -48,6 +49,7 @@ public class BoardState {
 				System.out.println();
 			}
 		}
+
 		
 	}
 	public static void deleteMove(int move)

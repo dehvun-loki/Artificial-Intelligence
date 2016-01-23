@@ -6,7 +6,7 @@ public class Heuristic {
 		int playerNumber = 0;
 		if(winningMove(move))//checks for a winning move for either player
 		{
-			if(playerNumber==0)//check whose turn it is TODO 
+			if(Loop.DetermineTurn())//check whose turn it is TODO 
 			{
 				return 10; // if this players turn program wins
 			}

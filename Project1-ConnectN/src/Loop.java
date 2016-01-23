@@ -5,7 +5,7 @@ import java.util.*;
 
 
 public class Loop {
-	public static int width, height, numToWin, playerNumber, timeLimit, move, currentTurn;
+	public static int width, height, numToWin, playerNumber, timeLimit, move, currentTurn, numTurns;
 	
 	
 	public static void main() throws Exception{
@@ -24,6 +24,8 @@ public class Loop {
         numToWin = Integer.parseInt(gameConfig[2]);
         playerNumber = Integer.parseInt(gameConfig[3]);
         timeLimit = Integer.parseInt(gameConfig[4]);
+        
+        numTurns = 0;
         
         BoardState.makeBoard(width,height);
 
@@ -55,40 +57,36 @@ public class Loop {
 	}
 
 	//Find the legal moves
-	public int FindLegalMove(){
+	public void FindLegalMove(){
+		
+		LinkedList Rows = new LinkedList();
+		LinkedList valueList = new LinkedList();
+		int returnedValue = 0;
 	
 		//Guessing this is the way to declare a variable holding an array of arrays of ints?
+		for(int i=move;i<=move;i++){
+			if(BoardState.board[height][i]==99){
+				Rows.add(i);
+			}
+		}
+		
+		for (int j=0; j<=(Rows.size()); j++){
+			//Run heuristic and get value for playing in that row
+			returnedValue = Heuristic.evaluate(j);
+			
+			//Store heuristic value for row in list
+			valueList.add(returnedValue);
+		}
+		
+		FindMax(valueList);
+		
+		//return or print rows?
 
 		//Alpha Beta to find moves
-		AlphaBetaPruning.getMove(height, width, numToWin, move, BoardState.board);
-		//where should all these variables be defined?
-		//Are we even using samplePlayer now that we have this class?
-		
-		return 0;
-	}
-	//Find Value of moves
-	public int EvaluateMove(){	
-		int currentMove;
-		int moveValue = 0;
-		
-		LinkedList valueList = new LinkedList();
-		//There's a way to resolve the "raw" warning with pointy brackets but I gave up
-		
-		//if FindLegalMove != null
-			currentMove = FindLegalMove();
-			moveValue = Heuristic.evaluate(currentMove);
-			
-			
-			//Store value in list
-			valueList.add(moveValue);
-			
-		//else
-			//Find max of list
-			FindMax(valueList);
-		
-		return 0;
+		//AlphaBetaPruning.getMove(height, width, numToWin, move, BoardState.board);
 	}
 
+	
 	public int FindMax(LinkedList list){
 		int currentMax = 0;
 		int currentValue;
@@ -103,16 +101,33 @@ public class Loop {
 		return currentMax;
 	}
 	
-	public static void DetermineTurn(int numTurns){
-		int playerTurn;
+	public static boolean DetermineTurn(){
+		int playerTurn = 0;
+		
 		if ((numTurns % 2) == 0){
-			playerTurn = 0;
-		}
-		else if ((numTurns % 2) == 1){
 			playerTurn = 1;
 		}
+		else if ((numTurns % 2) == 1){
+			playerTurn = 2;
+		}
+		
+		if (playerNumber == playerTurn){
+			return true;
+		}
+		else {
+			return false;
+		}	
+		
 	}
-	
+
+    public static void main(String... args) throws InterruptedException {
+        double startTime = System.nanoTime();
+
+        double difference = System.nanoTime() - startTime;
+        if (difference >= 1000000000){
+        	//force best available move
+        }
+    }
 	
 }
 	
