@@ -64,8 +64,8 @@ public class Loop {
 		int returnedValue = 0;
 	
 		//Guessing this is the way to declare a variable holding an array of arrays of ints?
-		for(int i=move;i<=move;i++){
-			if(BoardState.board[height][i]==99){
+		for(int i=0;i<=width;i++){
+			if(BoardState.board[height-1][i]==99){
 				Rows.add(i);
 			}
 		}

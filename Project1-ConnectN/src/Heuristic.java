@@ -14,11 +14,14 @@ public class Heuristic {
 		}
 		else if(stillPossibleToWin(move))
 		{
-			return furtherEvaluate(move);
+			BoardState.makeMove(move, false);
+			return furtherEvaluate();
 		}
 		else //this means that it is not a winning or losing move, 
 			 //but it is not possible to win from here, so it might as well be losing
 			return 0;
+		
+		
 	}
 	
 	
@@ -39,10 +42,13 @@ public class Heuristic {
 	}
 	
 	
-	public static int furtherEvaluate(int move)
+	public static int furtherEvaluate()
 	{
-		BoardState.makeMove(move, false);
-		return evaluate(move);
+		//If....
+			//On Edge
+			//Adding to chain
+			//
+		return 0;
 	}
 	
 }

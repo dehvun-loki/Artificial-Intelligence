@@ -1,6 +1,28 @@
 Stuff to Do:
-*Figure out and implement timer
 *Write AlphaBetaPruning
-*Write MakeMove
 *Write DeleteMove
-*Make FindMove and Evaluate Move work nice together
+*Make FindMove and Evaluate Move work nice together (A-B?)
+*Write EvaluateFurther function (determine what constitutes different values)
+*Write checkMaxPossibleChain
+
+
+
+Notes: check Max Possible Chain
+board [i][j]
+
+i = 2
+j = 4
+
+//Diagonal
+for (k=0; k<(N-1); k++){
+	if (board[i+1][j+1] == 99
+	
+//Horizontal
+//Diagonal
+for (k=0; k<(N-1); k++){
+	if (board[i][j+1] == 99
+	
+//Up
+check if there are enough spaces left above you
+if current height - needed < spaces left
+
