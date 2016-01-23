@@ -103,17 +103,5 @@ public class Loop {
 		return currentMax;
 	}
 	
-	public static void DetermineTurn(int numTurns){
-		int playerTurn;
-		if ((numTurns % 2) == 0){
-			playerTurn = 0;
-		}
-		else if ((numTurns % 2) == 1){
-			playerTurn = 1;
-		}
-	}
-	
-	
+		
 }
-	
-	

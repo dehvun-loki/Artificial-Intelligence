@@ -6,6 +6,7 @@ import java.util.*;
 
 public class Loop {
 	public static int width, height, numToWin, playerNumber, timeLimit, move, currentTurn;
+	public int numTurns;
 	
 	
 	public static void main() throws Exception{
@@ -103,7 +104,7 @@ public class Loop {
 		return currentMax;
 	}
 	
-	public static void DetermineTurn(int numTurns){
+	public static void DetermineTurn(numTurns){
 		int playerTurn;
 		if ((numTurns % 2) == 0){
 			playerTurn = 0;
@@ -112,8 +113,8 @@ public class Loop {
 			playerTurn = 1;
 		}
 	}
+		
+	}
 	
-	
+		
 }
-	
-	

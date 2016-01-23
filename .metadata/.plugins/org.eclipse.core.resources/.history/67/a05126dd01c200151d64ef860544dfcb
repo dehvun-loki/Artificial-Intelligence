@@ -1,6 +1,5 @@
 
 public class Heuristic {
-	
 	public static int evaluate(int move)
 	{
 		int playerNumber = 0;
@@ -31,14 +30,10 @@ public class Heuristic {
 		else return false;
 		
 	}
-	
-	
 	public static Boolean stillPossibleToWin(int move)
 	{	
 		return Evaluations.checkMaxPossibleChain(move)>=SamplePlayer.numToWin;
 	}
-	
-	
 	public static int furtherEvaluate(int move)
 	{
 		BoardState.makeMove(move, false);
