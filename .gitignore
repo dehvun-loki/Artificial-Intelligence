@@ -1,6 +1,6 @@
 *.class
 #Untracked files:
-.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
+.metadata/*
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
