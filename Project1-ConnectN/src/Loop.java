@@ -5,8 +5,8 @@ import java.util.*;
 
 
 public class Loop {
-	public static int width, height, numToWin, playerNumber, timeLimit, move, currentTurn, numTurns;
-	
+	public static int width, height, numToWin, playerNumber, timeLimit, moveColumnNumber, currentTurn, numTurns;
+	public static Move lastMove;
 	
 	public static void main() throws Exception{
         // use BufferedReader for easy reading
@@ -36,18 +36,19 @@ public class Loop {
                 // TODO: use a mechanism for timeout(threads, java.util.Timer, ..)
 				
                 // call alpha-beta algorithm to get the move
-                move = AlphaBetaPruning.getMove(height, width, numToWin, move, BoardState.board);
+                moveColumnNumber = AlphaBetaPruning.move(lastMove).column;
 
                 // send move
-                System.out.println(String.valueOf(move));
+                System.out.println(String.valueOf(moveColumnNumber));
                 System.out.flush();
             } else {
                 // read move
-                move = Integer.parseInt(input.readLine());
-                BoardState.makeMove(move, true);
+                moveColumnNumber = Integer.parseInt(input.readLine());
+                Move.makeMove(moveColumnNumber);
+                BoardState.makeMove(lastMove, true);
 
                 // check for end
-                if (move < 0)
+                if (moveColumnNumber < 0)
                     break;
             }
 
@@ -57,7 +58,7 @@ public class Loop {
 	}
 
 	//Find the legal moves
-	public void FindLegalMove(){
+	public static LinkedList FindLegalMove(){
 		
 		LinkedList Rows = new LinkedList();
 		LinkedList valueList = new LinkedList();
@@ -69,17 +70,20 @@ public class Loop {
 				Rows.add(i);
 			}
 		}
-		
-		for (int j=0; j<=(Rows.size()); j++){
+		return Rows;
+		/*
+		 for (int j=0; j<=(Rows.size()); j++){
+		 
 			//Run heuristic and get value for playing in that row
-			returnedValue = Heuristic.evaluate(j);
+			Move nextMove = new Move((int) Rows.get(j),j,0);
+			returnedValue = Heuristic.evaluate(nextMove);
 			
 			//Store heuristic value for row in list
 			valueList.add(returnedValue);
 		}
 		
 		FindMax(valueList);
-		
+		*/
 		//return or print rows?
 
 		//Alpha Beta to find moves

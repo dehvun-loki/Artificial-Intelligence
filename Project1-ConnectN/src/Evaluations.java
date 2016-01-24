@@ -1,19 +1,18 @@
 
 public class Evaluations {
-	public static int checkMaxChain(int move)
+	public static int checkMaxChain(Move move)
 	{
 		return 0;//TODO return max chain length using move
 	}
-	public static int checkMaxPossibleChain(int move, int direction)
+
+	public static int checkMaxPossibleChain(Move move)
 	{
 		int state = 0, currentColumn = 0, currentRow = 0;
 		int value[][] = BoardState.board;
-		
-		for(int i=0; i<(Loop.height-1);i++){
-			if (value[i][move] == 99){
-				currentColumn = move; //Making a less confusing variable name
-				currentRow = i; //Making a less confusing variable name
-			}
+
+		currentColumn = move.column;
+		currentRow = move.row;
+			
 			int nonEnemyChain; //Keeps track of the length of the chain that currently exists
 			int counter; //This is the counter that is used for all the for loops
 			
@@ -38,7 +37,7 @@ public class Evaluations {
 						}
 					}
 				}
-				if ((verticalSpaceLeft + chainSoFar) > Loop.numToWin){
+				if ((verticalSpaceLeft + chainSoFar) >= Loop.numToWin){
 					//If the sum of the space left plus the existing chain is greater than the number required to win
 					//still possible to win. Return accordingly.
 				}
@@ -49,20 +48,21 @@ public class Evaluations {
 				//Horizontal Chain
 				nonEnemyChain = 0; //No chain yet
 				counter = 0; //Start counting at zero
-				int spaceToLeft = 0;
-				int spaceToRight = 0;
 				
-				if (value[currentRow][currentColumn-1] == 0){ //If the value to the left of where we are is our piece
-					for(counter = currentColumn; counter>=0; counter--){
+				if ((value[currentRow][currentColumn-1] == 0)|(value[currentRow][currentColumn+1] == 0)){ //If the value to the left of where we are is our piece
+					for(counter = (currentColumn+Loop.numToWin-1); counter>=0; counter--){
 						if ((value[currentRow][counter] == 0) | (value[currentRow][counter]==99)){
 							//If the space is either empty or is friendly
 							nonEnemyChain++; //Chain of our moves plus possible moves
 						}
-						else{
+						else if (Loop.width-counter >= Loop.numToWin){
+							nonEnemyChain = 0;
+						}
+						else {
 							counter = -1;
 						}
 					}
-				}				
+				}
 				
 				if (nonEnemyChain < Loop.numToWin){
 					//still possible to win. Return accordingly.
@@ -70,15 +70,72 @@ public class Evaluations {
 				else {
 					break;
 				}				
-				break;
 			case 2:
 				//Diagonal Right Chain
-				break;
+				nonEnemyChain = 0; //No chain yet
+				counter = 0; //Start counting at zero
+
+				if ((value[currentRow-1][currentColumn-1] == 0)|(value[currentRow+1][currentColumn+1] == 0)){ //If the value to the left of where we are is our piece
+					int workingRow = currentRow+Loop.numToWin-1;
+					
+					for(counter=currentColumn+Loop.numToWin-1; counter<currentColumn-Loop.numToWin+1; counter--){
+						if (workingRow != 0 | workingRow != Loop.height-1 | counter != 0 | counter != Loop.width-1){
+							if ((value[workingRow][counter] == 0) | (value[workingRow][counter]==99)){
+								//If the space is either empty or is friendly
+								nonEnemyChain++; //Chain of our moves plus possible moves
+							}
+							else if ((Loop.width-counter >= Loop.numToWin)&(Loop.height-workingRow >= Loop.numToWin)){
+								nonEnemyChain = 0;
+							}
+							else {
+								counter = -1;
+							}
+						}
+						else{
+							//skip this
+						}
+						workingRow--;
+				}
+			}
+				if (nonEnemyChain < Loop.numToWin){
+					//still possible to win. Return accordingly.
+				}
+				else {
+					break;
+				}
 			case 3:
 				//Diagonal Left Chain
-				break;
-			case 4:
-				//Don't know if I'll use this
+				nonEnemyChain = 0; //No chain yet
+				counter = 0; //Start counting at zero
+
+				if ((value[currentRow+1][currentColumn+1] == 0)|(value[currentRow-1][currentColumn-1] == 0)){ //If the value to the left of where we are is our piece
+					int workingRow = currentRow+Loop.numToWin-1;
+					
+					for(counter=currentColumn+Loop.numToWin-1; counter<=currentColumn-Loop.numToWin+1; counter--){
+						if (workingRow != 0 | workingRow != Loop.height-1 | counter != 0 | counter != Loop.width-1){
+							if ((value[workingRow][counter] == 0) | (value[workingRow][counter]==99)){
+								//If the space is either empty or is friendly
+								nonEnemyChain++; //Chain of our moves plus possible moves
+							}
+							else if ((Loop.width-counter >= Loop.numToWin)&(Loop.height-workingRow >= Loop.numToWin)){
+								nonEnemyChain = 0;
+							}
+							else {
+								counter = -1;
+							}
+						}
+						else{
+							//pass
+						}
+						workingRow++;
+				}
+			}
+				if (nonEnemyChain < Loop.numToWin){
+					//still possible to win. Return accordingly.
+				}
+				else {
+					break;
+				}
 				break;
 			}
 			//find length of chain so far
@@ -86,7 +143,6 @@ public class Evaluations {
 			
 			
 			
-		}
 		return 0; //TODO return max chain length that can be achieved in 
 				  //this location without worrying about if opponent can block
 	}

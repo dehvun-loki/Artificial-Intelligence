@@ -1,7 +1,7 @@
 
 public class BoardState {
 	public static int[][] board = new int[7][6];
-	public int [][] possibleBoard = board;
+	public static int [][] possibleBoard = board;
 	
 	public static void makeBoard(int width, int height)
 	{
@@ -18,7 +18,7 @@ public class BoardState {
 		
 	}
 	
-	public static void makeMove(int move, Boolean isFinal)
+	public static void makeMove(Move move, Boolean isFinal)
 	{
 		Loop.numTurns++;
 		//if isFinal set actual board, else set possible board to use for searching
@@ -27,33 +27,60 @@ public class BoardState {
 		//Keeping track of board and moves
 		if(isFinal)
 		{
-			for(int i=move;i<=move;i++)
+			for(int i=move.column;i<=move.column;i++)
 			{
-				for(int j=0;j<=SamplePlayer.height;j++)
+				for(int j=0;j<=Loop.height;j++)
 				{
 					if(board[j][i]==99)
 					{
-						board[j][i]=0;
-						break;
+						if(move.player==0){
+							board[j][i]=0;
+							break;
+						}
+						else
+						{
+							board[j][i]=1;
+						}
 					}
 				}	
 			}
 
 			
-			for(int i=SamplePlayer.width-1;i>=0;i--)
+			for(int i=Loop.width-1;i>=0;i--)
 			{
-				for(int j=0;j<SamplePlayer.height;j++)
+				for(int j=0;j<Loop.height;j++)
 				{
 					System.out.printf("%5d",board[i][j]);
 				}
 				System.out.println();
 			}
 		}
-
+		
+		
+		else
+		{
+			if(possibleBoard[move.column][move.row]==99)
+				{
+				if(move.player==0){
+					possibleBoard[move.column][move.row]=0;
+				}
+				else
+				{
+					possibleBoard[move.column][move.row]=1;
+				}
+			}
+		}
+		
+		
 		
 	}
-	public static void deleteMove(int move)
+	public static void deleteMove(Move move, Boolean isFinal)
 	{
+		if(isFinal)
+		{
+			board[move.column][move.row]=99;	
 		//remove topmost filled space in the column specified
+		}
+		else possibleBoard[move.column][move.row]=99;
 	}
 }

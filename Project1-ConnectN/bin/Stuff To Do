@@ -1,6 +1,5 @@
 Stuff to Do:
 *Write AlphaBetaPruning
-*Write DeleteMove
 *Make FindMove and Evaluate Move work nice together (A-B?)
 *Write EvaluateFurther function (determine what constitutes different values)
 *Write checkMaxPossibleChain
@@ -16,7 +15,7 @@ j = 4
 
 //Diagonal
 for (k=0; k<(N-1); k++){
-	if (board[i+1][j+1] == 99
+	if (board[i+1][j+1]) == 99
 	
 //Horizontal
 //Diagonal
