@@ -38,7 +38,10 @@ public class Heuristic {
 	
 	public static Boolean stillPossibleToWin(int move)
 	{	
-		return Evaluations.checkMaxPossibleChain(move)>=SamplePlayer.numToWin;
+		int direction = 0;
+		
+		
+		return Evaluations.checkMaxPossibleChain(move, direction)>=SamplePlayer.numToWin;
 	}
 	
 	

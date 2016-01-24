@@ -4,6 +4,7 @@ Stuff to Do:
 *Make FindMove and Evaluate Move work nice together (A-B?)
 *Write EvaluateFurther function (determine what constitutes different values)
 *Write checkMaxPossibleChain
+*Write checkMaxChain
 
 
 
