@@ -11,7 +11,7 @@ public class Move {
 		player=c;		
 	}
 	
-	public static void makeMove(int moveColumn)
+	public static Move makeMove(int moveColumn)
 	{
 		for(int i=moveColumn;i<=moveColumn;i++)
 		{
@@ -20,9 +20,15 @@ public class Move {
 				if(BoardState.board[j][i]==99)
 				{
 					Loop.lastMove=new Move(moveColumn,j,1);
+					return Loop.lastMove;
+				}
+				else
+				{
+					return new Move(0,0,0);
 				}
 			}	
 		}
+		return new Move(0,0,0);
 
 	}
 }

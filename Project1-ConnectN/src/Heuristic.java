@@ -3,7 +3,7 @@ public class Heuristic {
 	
 	public static int evaluate(Move move)
 	{
-		int playerNumber = 0;
+
 		if(winningMove(move))//checks for a winning move for either player
 		{
 			if(Loop.DetermineTurn())//check whose turn it is TODO 

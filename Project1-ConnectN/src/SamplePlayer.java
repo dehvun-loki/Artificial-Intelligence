@@ -34,8 +34,7 @@ public class SamplePlayer {
                 // TODO: use a mechanism for timeout(threads, java.util.Timer, ..)
 				
                 // call alpha-beta algorithm to get the move
-                move = AlphaBetaPruning.getMove(height, width, numToWin, move, BoardState.board);
-
+				
                 // send move
                 System.out.println(String.valueOf(move));
                 System.out.flush();

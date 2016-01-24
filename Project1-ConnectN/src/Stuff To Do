@@ -1,6 +1,5 @@
 Stuff to Do:
 *Write AlphaBetaPruning
-*Write DeleteMove
 *Make FindMove and Evaluate Move work nice together (A-B?)
 *Write EvaluateFurther function (determine what constitutes different values)
 *Write checkMaxPossibleChain

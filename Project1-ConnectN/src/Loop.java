@@ -36,7 +36,7 @@ public class Loop {
                 // TODO: use a mechanism for timeout(threads, java.util.Timer, ..)
 				
                 // call alpha-beta algorithm to get the move
-                move = AlphaBetaPruning.getMove(height, width, numToWin, move, BoardState.board);
+                move = AlphaBetaPruning.move(lastMove).column;
 
                 // send move
                 System.out.println(String.valueOf(move));
@@ -58,7 +58,7 @@ public class Loop {
 	}
 
 	//Find the legal moves
-	public void FindLegalMove(){
+	public static LinkedList FindLegalMove(){
 		
 		LinkedList Rows = new LinkedList();
 		LinkedList valueList = new LinkedList();
@@ -70,8 +70,10 @@ public class Loop {
 				Rows.add(i);
 			}
 		}
-		
-		for (int j=0; j<=(Rows.size()); j++){
+		return Rows;
+		/*
+		 for (int j=0; j<=(Rows.size()); j++){
+		 
 			//Run heuristic and get value for playing in that row
 			Move nextMove = new Move((int) Rows.get(j),j,0);
 			returnedValue = Heuristic.evaluate(nextMove);
@@ -81,7 +83,7 @@ public class Loop {
 		}
 		
 		FindMax(valueList);
-		
+		*/
 		//return or print rows?
 
 		//Alpha Beta to find moves
