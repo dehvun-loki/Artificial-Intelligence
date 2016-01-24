@@ -3,6 +3,7 @@ import java.io.*;
 
 public class SamplePlayer {
     public static int width, height, numToWin, playerNumber, timeLimit, move, board;
+    public static Move lastMove;
 
 	public static void main (String args[]) throws Exception {
     
@@ -23,9 +24,7 @@ public class SamplePlayer {
         timeLimit = Integer.parseInt(gameConfig[4]);
         BoardState.makeBoard(width,height);
         System.out.println();
-        BoardState.makeMove(1, true);
-        System.out.println();
-        BoardState.makeMove(1, true);
+        
         
         int currentTurn = 0;	// first player starts
         while (true) {
@@ -43,6 +42,7 @@ public class SamplePlayer {
             } else {
                 // read move
                 move = Integer.parseInt(input.readLine());
+                
 
                 // check for end
                 if (move < 0)

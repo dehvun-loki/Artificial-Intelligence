@@ -1,7 +1,7 @@
 
 public class Heuristic {
 	
-	public static int evaluate(int move)
+	public static int evaluate(Move move)
 	{
 		int playerNumber = 0;
 		if(winningMove(move))//checks for a winning move for either player
@@ -15,7 +15,7 @@ public class Heuristic {
 		else if(stillPossibleToWin(move))
 		{
 			BoardState.makeMove(move, false);
-			return furtherEvaluate();
+			return furtherEvaluate(move);
 		}
 		else //this means that it is not a winning or losing move, 
 			 //but it is not possible to win from here, so it might as well be losing
@@ -25,7 +25,7 @@ public class Heuristic {
 	}
 	
 	
-	public static Boolean winningMove(int move)
+	public static Boolean winningMove(Move move)
 	{
 		if(Evaluations.checkMaxChain(move)>=SamplePlayer.numToWin)
 		{
@@ -36,19 +36,20 @@ public class Heuristic {
 	}
 	
 	
-	public static Boolean stillPossibleToWin(int move)
+	public static Boolean stillPossibleToWin(Move move)
 	{	
-		return Evaluations.checkMaxPossibleChain(move)>=SamplePlayer.numToWin;
+		//TODO needs to return an int
+		return Evaluations.checkMaxPossibleChain(move)>=SamplePlayer.numToWin;	
 	}
-	
-	
-	public static int furtherEvaluate()
-	{
+
+	public static int furtherEvaluate(Move move)
+	{	
 		//If....
-			//On Edge
-			//Adding to chain
-			//
+		//On Edge
+		//Adding to chain
+		//
 		return 0;
 	}
-	
 }
+		
+

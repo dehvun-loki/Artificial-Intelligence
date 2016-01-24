@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Loop {
 	public static int width, height, numToWin, playerNumber, timeLimit, move, currentTurn, numTurns;
-	
+	public static Move lastMove;
 	
 	public static void main() throws Exception{
         // use BufferedReader for easy reading
@@ -44,7 +44,8 @@ public class Loop {
             } else {
                 // read move
                 move = Integer.parseInt(input.readLine());
-                BoardState.makeMove(move, true);
+                Move.makeMove(move);
+                BoardState.makeMove(lastMove, true);
 
                 // check for end
                 if (move < 0)
@@ -72,7 +73,8 @@ public class Loop {
 		
 		for (int j=0; j<=(Rows.size()); j++){
 			//Run heuristic and get value for playing in that row
-			returnedValue = Heuristic.evaluate(j);
+			Move nextMove = new Move((int) Rows.get(j),j,0);
+			returnedValue = Heuristic.evaluate(nextMove);
 			
 			//Store heuristic value for row in list
 			valueList.add(returnedValue);
