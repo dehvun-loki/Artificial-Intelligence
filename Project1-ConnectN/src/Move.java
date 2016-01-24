@@ -15,7 +15,7 @@ public class Move {
 	{
 		for(int i=moveColumn;i<=moveColumn;i++)
 		{
-			for(int j=0;j<=SamplePlayer.height;j++)
+			for(int j=0;j<=Loop.height;j++)
 			{
 				if(BoardState.board[j][i]==99)
 				{

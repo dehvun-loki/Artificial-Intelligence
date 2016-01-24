@@ -27,7 +27,7 @@ public class Heuristic {
 	
 	public static Boolean winningMove(Move move)
 	{
-		if(Evaluations.checkMaxChain(move)>=SamplePlayer.numToWin)
+		if(Evaluations.checkMaxChain(move)>=Loop.numToWin)
 		{
 			return true;
 		}
@@ -39,7 +39,7 @@ public class Heuristic {
 	public static Boolean stillPossibleToWin(Move move)
 	{	
 		//TODO needs to return an int
-		return Evaluations.checkMaxPossibleChain(move)>=SamplePlayer.numToWin;	
+		return Evaluations.checkMaxPossibleChain(move)>=Loop.numToWin;	
 	}
 
 	public static int furtherEvaluate(Move move)

@@ -5,7 +5,7 @@ import java.util.*;
 
 
 public class Loop {
-	public static int width, height, numToWin, playerNumber, timeLimit, move, currentTurn, numTurns;
+	public static int width, height, numToWin, playerNumber, timeLimit, moveColumnNumber, currentTurn, numTurns;
 	public static Move lastMove;
 	
 	public static void main() throws Exception{
@@ -36,19 +36,19 @@ public class Loop {
                 // TODO: use a mechanism for timeout(threads, java.util.Timer, ..)
 				
                 // call alpha-beta algorithm to get the move
-                move = AlphaBetaPruning.move(lastMove).column;
+                moveColumnNumber = AlphaBetaPruning.move(lastMove).column;
 
                 // send move
-                System.out.println(String.valueOf(move));
+                System.out.println(String.valueOf(moveColumnNumber));
                 System.out.flush();
             } else {
                 // read move
-                move = Integer.parseInt(input.readLine());
-                Move.makeMove(move);
+                moveColumnNumber = Integer.parseInt(input.readLine());
+                Move.makeMove(moveColumnNumber);
                 BoardState.makeMove(lastMove, true);
 
                 // check for end
-                if (move < 0)
+                if (moveColumnNumber < 0)
                     break;
             }
 
