@@ -28,7 +28,7 @@ public class Heuristic {
 	
 	public static Boolean winningMove(Move move)
 	{
-		if(Evaluations.checkMaxChain(move)>=Loop.numToWin)
+		if(Evaluations.checkMaxPossibleChain(move)>=Loop.numToWin)
 		{
 			return true;
 		}
