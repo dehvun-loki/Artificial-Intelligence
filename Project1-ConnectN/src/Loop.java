@@ -29,7 +29,7 @@ public class Loop {
         
         numTurns = 0;
         
-        BoardState.makeBoard(width,height);
+        BoardState.makeBoard(height,width);
         System.out.println();
 
 		while(true){
@@ -40,8 +40,8 @@ public class Loop {
 				
                 // call alpha-beta algorithm to get the move
                 moveColumnNumber = AlphaBetaPruning.move(lastMove).column;
-                Move finalMove = Move.makeMove(moveColumnNumber);
-                BoardState.makeMove(finalMove, true);
+                Move.makeMove(moveColumnNumber);
+                BoardState.makeMove(lastMove, true);
 
                 // send move
                 System.out.println();
@@ -76,7 +76,7 @@ public class Loop {
 	
 		//Guessing this is the way to declare a variable holding an array of arrays of ints?
 		for(int i=0;i<=width-1;i++){
-			if(BoardState.board[i][height-1]==99){
+			if(BoardState.board[height-1][i]==99){
 				Rows.add(i);
 			}
 		}

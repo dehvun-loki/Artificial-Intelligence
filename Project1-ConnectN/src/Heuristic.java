@@ -4,7 +4,6 @@ public class Heuristic {
 	public static int chainLength;
 	public static int evaluate(Move move)
 	{
-
 		if(winningMove(move))//checks for a winning move for either player
 		{
 			if(Loop.DetermineTurn())//check whose turn it is TODO 
@@ -16,6 +15,7 @@ public class Heuristic {
 		else if(stillPossibleToWin(move))
 		{
 			BoardState.makeMove(move, false);
+
 			return furtherEvaluate(move);
 		}
 		else //this means that it is not a winning or losing move, 
@@ -56,8 +56,8 @@ public class Heuristic {
 		if(move.row==0|move.row==Loop.height-1){
 			value--;
 		}
-		value+=chainLength;
-		
+		value+=(chainLength/2);
+		System.out.println(move.row + " " + move.column + " " + value);
 		return value;
 	}
 }

@@ -6,35 +6,30 @@ public class Move {
 	
 	public Move(int a, int b, int c)
 	{
-		column=a;
-		row=b;
+		row=a;
+		column=b;
 		player=c;		
 	}
 	
 	public static Move makeMove(int moveColumn)
 	{
-		for(int i=moveColumn;i<=moveColumn;i++)
+		for(int j=0;j<=Loop.height-1;j++)
 		{
-			for(int j=0;j<=Loop.height-1;j++)
+			if(BoardState.board[j][moveColumn]==99)
 			{
-				if(BoardState.board[i][j]==99)
+				if(Loop.DetermineTurn())
 				{
-					if(Loop.DetermineTurn())
-					{
-						Loop.lastMove=new Move(moveColumn,j,1);
-						return Loop.lastMove;
-					}
-					else
-					{
-						Loop.lastMove=new Move(moveColumn,j,0);
-						return Loop.lastMove;
-
-					}
+					Loop.lastMove=new Move(j,moveColumn,1);
+					return Loop.lastMove;
 				}
-				else{}
-			}	
-		}
+				else
+				{
+					Loop.lastMove=new Move(j,moveColumn,0);
+					return Loop.lastMove;
+				}
+			}
+			else{}
+		}	
 		return new Move(0,0,0);
-
 	}
 }
