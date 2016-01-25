@@ -22,8 +22,7 @@ public class Evaluations {
 				int chainSoFar = 0; //No chain yet
 				counter = 0; //Start counting at zero
 				int verticalSpaceLeft = Loop.height - currentRow; //The amount of space left is equal to the total height minus the row we are on
-				
-				if (value[currentRow-1][currentColumn] == 0){//If the space under us is also us:
+				if (currentRow == 0 | currentRow == Loop.height-1){
 					for(counter = currentRow; counter>=1; counter--){ 
 						//Checking for more of our pieces in this column in each space under us
 						if (value[counter][currentColumn] == 0){ //If our piece is in the row under the last checked row
@@ -36,13 +35,32 @@ public class Evaluations {
 							counter = 0;
 						}
 					}
+
 				}
+				else{
+					if (value[currentRow-1][currentColumn] == 0){//If the space under us is also us:
+						for(counter = currentRow; counter>=1; counter--){ 
+							//Checking for more of our pieces in this column in each space under us
+							if (value[counter][currentColumn] == 0){ //If our piece is in the row under the last checked row
+								chainSoFar++; //Increment the chain variable
+							}
+							else{
+								//If we find a piece somewhere in the column that is an opponent
+								//make the counter be something beyond the bounds of the for loop
+								//This breaks the for loop and stops counting the chain..
+								counter = 0;
+							}
+						}
+					}
+				}
+				
 				if ((verticalSpaceLeft + chainSoFar) >= Loop.numToWin){
 					//If the sum of the space left plus the existing chain is greater than the number required to win
 					//still possible to win. Return accordingly.
+					return verticalSpaceLeft + chainSoFar;
 				}
 				else {
-					break;
+					return 0;
 				}				
 			case 1:
 				//Horizontal Chain
@@ -66,9 +84,10 @@ public class Evaluations {
 				
 				if (nonEnemyChain < Loop.numToWin){
 					//still possible to win. Return accordingly.
+					return nonEnemyChain;
 				}
 				else {
-					break;
+					return 0;
 				}				
 			case 2:
 				//Diagonal Right Chain
@@ -99,9 +118,10 @@ public class Evaluations {
 			}
 				if (nonEnemyChain < Loop.numToWin){
 					//still possible to win. Return accordingly.
+					return nonEnemyChain;
 				}
 				else {
-					break;
+					return 0;
 				}
 			case 3:
 				//Diagonal Left Chain
@@ -132,11 +152,12 @@ public class Evaluations {
 			}
 				if (nonEnemyChain < Loop.numToWin){
 					//still possible to win. Return accordingly.
+					return nonEnemyChain;
 				}
 				else {
-					break;
+					return 0;
 				}
-				break;
+
 			}
 			//find length of chain so far
 			//find length still possible to go in that direction

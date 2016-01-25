@@ -8,7 +8,9 @@ public class Loop {
 	public static int width, height, numToWin, playerNumber, timeLimit, moveColumnNumber, currentTurn, numTurns;
 	public static Move lastMove;
 	
-	public static void main() throws Exception{
+	
+	public static void main(String args[]) throws Exception{
+		System.out.println("inside Main");
         // use BufferedReader for easy reading
         BufferedReader input = new BufferedReader(
             new InputStreamReader(System.in));
@@ -28,6 +30,7 @@ public class Loop {
         numTurns = 0;
         
         BoardState.makeBoard(width,height);
+        System.out.println();
 
 		while(true){
 			int myTurn = 0;
@@ -37,12 +40,18 @@ public class Loop {
 				
                 // call alpha-beta algorithm to get the move
                 moveColumnNumber = AlphaBetaPruning.move(lastMove).column;
+                Move finalMove = Move.makeMove(moveColumnNumber);
+                BoardState.makeMove(finalMove, true);
 
                 // send move
+                System.out.println();
+                System.out.println("my move is");
                 System.out.println(String.valueOf(moveColumnNumber));
+                
                 System.out.flush();
             } else {
                 // read move
+            	System.out.println("your move");
                 moveColumnNumber = Integer.parseInt(input.readLine());
                 Move.makeMove(moveColumnNumber);
                 BoardState.makeMove(lastMove, true);
@@ -54,6 +63,7 @@ public class Loop {
 
             // switch turns
             currentTurn = 1 - currentTurn;
+            numTurns++;
 		}
 	}
 
@@ -65,8 +75,8 @@ public class Loop {
 		int returnedValue = 0;
 	
 		//Guessing this is the way to declare a variable holding an array of arrays of ints?
-		for(int i=0;i<=width;i++){
-			if(BoardState.board[height-1][i]==99){
+		for(int i=0;i<=width-1;i++){
+			if(BoardState.board[i][height-1]==99){
 				Rows.add(i);
 			}
 		}
@@ -124,7 +134,7 @@ public class Loop {
 		
 	}
 
-    public static void main(String... args) throws InterruptedException {
+    public static void timer(String... args) throws InterruptedException {
         double startTime = System.nanoTime();
 
         double difference = System.nanoTime() - startTime;

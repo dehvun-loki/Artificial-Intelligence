@@ -6,12 +6,13 @@ public class AlphaBetaPruning {
 	    int bestScore = -10000;
 	    Move gameTreeRoot = state;
 	    int maxDepth = 1;
-		while (true)
+		while (maxDepth<5)
 		{
 			for(int i=0;i<=maxDepth;i++)
 			{
 				for (Object child : Loop.FindLegalMove())
 				{
+					child = Move.makeMove((int)child);
 					int alpha = miniMax((Move)child, maxDepth, bestScore, 10000);
 					if (alpha > bestScore || bestMove == null) 
 					{
@@ -19,10 +20,11 @@ public class AlphaBetaPruning {
 						bestScore = alpha;
 					}
 				}
-				return bestMove;
 			}
+			
 			maxDepth++;
-		}				
+		}
+		return bestMove;
 	}
 	
 	public static int miniMax(Move move, int depth, int alpha, int beta) {
@@ -34,7 +36,7 @@ public class AlphaBetaPruning {
 	    if (Loop.lastMove.player==1) {
 	        int currentAlpha = -10000;
 	        for (Object child : Loop.FindLegalMove()) {
-	        	child = new Move((int)child, currentAlpha, currentAlpha);
+	        	child = Move.makeMove((int)child);
 	            currentAlpha = Math.max(currentAlpha, miniMax((Move)child, depth - 1, alpha, beta));
 	            alpha = Math.max(alpha, currentAlpha);
 	            if (alpha >= beta) {

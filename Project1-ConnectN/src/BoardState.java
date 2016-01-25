@@ -20,7 +20,7 @@ public class BoardState {
 	
 	public static void makeMove(Move move, Boolean isFinal)
 	{
-		Loop.numTurns++;
+		
 		//if isFinal set actual board, else set possible board to use for searching
 		//set board to have a 0 or 1 dependent in the bottommost empty row in the column
 		
@@ -29,33 +29,34 @@ public class BoardState {
 		{
 			for(int i=move.column;i<=move.column;i++)
 			{
-				for(int j=0;j<=Loop.height;j++)
+				for(int j=0;j<=Loop.height-1;j++)
 				{
-					if(board[j][i]==99)
+					if(board[i][j]==99)
 					{
 						if(move.player==0){
-							board[j][i]=0;
+							board[i][j]=0;
 							break;
 						}
 						else
 						{
-							board[j][i]=1;
+							board[i][j]=1;
+							break;
 						}
 					}
 				}	
 			}
 
-			
-			for(int i=Loop.width-1;i>=0;i--)
+		}
+		if(isFinal){			
+			for(int i=Loop.height-1;i>=0;i--)
 			{
-				for(int j=0;j<Loop.height;j++)
+				for(int j=0;j<Loop.width-1;j++)
 				{
 					System.out.printf("%5d",board[i][j]);
 				}
 				System.out.println();
 			}
 		}
-		
 		
 		else
 		{

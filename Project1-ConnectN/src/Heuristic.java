@@ -1,6 +1,7 @@
 
 public class Heuristic {
-	
+	public static int value = 5;
+	public static int chainLength;
 	public static int evaluate(Move move)
 	{
 
@@ -39,7 +40,8 @@ public class Heuristic {
 	public static Boolean stillPossibleToWin(Move move)
 	{	
 		//TODO needs to return an int
-		return Evaluations.checkMaxPossibleChain(move)>=Loop.numToWin;	
+		chainLength=Evaluations.checkMaxPossibleChain(move);
+		return chainLength>=Loop.numToWin;	
 	}
 
 	public static int furtherEvaluate(Move move)
@@ -48,7 +50,15 @@ public class Heuristic {
 		//On Edge
 		//Adding to chain
 		//
-		return 0;
+		if(move.column==0|move.column==Loop.width-1){
+			value--;
+		}
+		if(move.row==0|move.row==Loop.height-1){
+			value--;
+		}
+		value+=chainLength;
+		
+		return value;
 	}
 }
 		

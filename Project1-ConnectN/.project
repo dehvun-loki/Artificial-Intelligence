@@ -14,4 +14,10 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<variableList>
+		<variable>
+			<name>HOME</name>
+			<value>file:/C:/Users/Devon/workspace/AI/Artificial-Intelligence/Project1-ConnectN</value>
+		</variable>
+	</variableList>
 </projectDescription>
