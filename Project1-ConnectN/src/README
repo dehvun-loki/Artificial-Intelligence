@@ -1,0 +1,19 @@
+READ ME
+
+To Run Our Program:
+1.)
+2.)
+3.)
+4.)
+
+
+Our Experiment:
+During this project, we pass a "move" variable to many of our methods. Originally, our move 
+variable simply represented the column that the move would be made in. While working on the project
+we found that there were several different times where methods would have to iterate through a for-loop
+to determine the row of each column that the move would actually be taking place in. Shortly after
+that, we realized that it would also be useful to have a variable to denote whether it was 
+our turn or the opponents. In order to solve both of these problems at once, we created a new 
+class to hold information about the move. The new class contained a value for the column and row of 
+the move as well as which player was executing the move. Using the class meant that rather than 
+executing clunky code in each method, all we had to do was pull the value and save it to a variable.
