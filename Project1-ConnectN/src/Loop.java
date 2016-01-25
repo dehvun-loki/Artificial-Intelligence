@@ -37,10 +37,10 @@ public class Loop {
 			
 			if (currentTurn == myTurn) {
                 // TODO: use a mechanism for timeout(threads, java.util.Timer, ..)
-				
+				Move.makeMove(0, true);
                 // call alpha-beta algorithm to get the move
                 moveColumnNumber = AlphaBetaPruning.move(lastMove).column;
-                Move.makeMove(moveColumnNumber);
+                Move.makeMove(moveColumnNumber,true);
                 BoardState.makeMove(lastMove, true);
 
                 // send move
@@ -53,7 +53,7 @@ public class Loop {
                 // read move
             	System.out.println("your move");
                 moveColumnNumber = Integer.parseInt(input.readLine());
-                Move.makeMove(moveColumnNumber);
+                Move.makeMove(moveColumnNumber,true);
                 BoardState.makeMove(lastMove, true);
 
                 // check for end
