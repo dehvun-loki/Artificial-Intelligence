@@ -79,15 +79,15 @@ def Sigmoid(x):
 
 	sigMath = 1/(1+math.exp(-x))
 	sigMath = round(sigMath)
-	
+	#print (sigMath)
 	return sigMath
 
 
 
 def BackProp(err):
-	global firstInput, secondInput, output, inputWeight1, inputWeight2, outputWeight
+	global firstInput, secondInput, output, inputWeight1, inputWeight2, outputWeight, learningRate, decay
 
-	learningRate = .1
+	#learningRate = learningRate * decay
 	i = 0
 
 	if err < -1:
@@ -96,21 +96,26 @@ def BackProp(err):
 		err = 1
 
 	while (i<len(inputWeight1)):
-		inputWeight1[i] = inputWeight1[i] + (learningRate * err)
-		inputWeight2[i] = inputWeight2[i] + (learningRate * err)
-		outputWeight[i] = outputWeight[i] + (learningRate * err)
+		inputWeight1[i] = inputWeight1[i] + (learningRate * err * -1)
+		inputWeight2[i] = inputWeight2[i] + (learningRate * err * -1)
+		outputWeight[i] = outputWeight[i] + (learningRate * err * -1)
 		i+=1
 
 
 
 if __name__=='__main__':
 
-	global firstInputList, secondInputList, output, inputWeight1, inputWeight2, outputWeight
+	global firstInputList, secondInputList, output, inputWeight1, inputWeight2, outputWeight, learningRate, decay
 
 	myopts, args = getopt.getopt(sys.argv[1:], "i:o:")
 
-	firstInput = float(args[1])
-	secondInput = float(args[3])
+	firstInput=5
+	secondInput=.2
+
+	if(len(args)>2):
+		firstInput = float(args[1])
+	if(len(args)>4):
+		secondInput = float(args[3])
 
 	holdOutNumber = secondInput * 200
 	trainingData = 200 - holdOutNumber
@@ -118,29 +123,33 @@ if __name__=='__main__':
 	testingCounter = 0
 	errorList = []
 	zeroCount = 0
-
+	timesDone = 0
+	maxRepeats = 50
+	learningRate = .01
+	decay = .99
 
 	#Pull from User input
 	FillLists(firstInput)
+	print(outputWeight)
+	while (timesDone < maxRepeats):
+		trainingCounter = 0
+		while (trainingCounter < trainingData):
 
-	while (trainingCounter < trainingData):
+			err1 = HFunction(trainingCounter)
+			err2 = output[trainingCounter]
+			err = err1- float(err2)
 
-		err1 = HFunction(trainingCounter)
-		err2 = output[trainingCounter]
-		err = err1- float(err2)
+			#print (err1, err2, err)
 
-		#print (err1, err2, err)
-
-		#back propogation
-		BackProp(err)
-		trainingCounter+=1
+			#back propogation
+			BackProp(err)
+			trainingCounter+=1
+		learningRate = learningRate * decay
+		timesDone += 1
 
 	while (testingCounter < holdOutNumber):
-
 		err = HFunction(trainingCounter+testingCounter)-float(output[trainingCounter+testingCounter])
 		testingCounter+=1
-
-
 		errorList.append(err)
 
 	for value in errorList:
@@ -148,4 +157,5 @@ if __name__=='__main__':
 			zeroCount+=1
 	zeroCount = (zeroCount/(len(errorList))*100)
 
+	print (outputWeight)
 	print("There are ", zeroCount, " percent correct")
