@@ -51,11 +51,16 @@ def HFunction(pointer):
 
 def Sigmoid(x):
 	sigMath = 1/(1+math.exp(-x))
+	sigMath = round(sigMath)
 	return sigMath
 
 
 
-
+def BackProp(err):
+	learningRate = .1
+	inputWeight1 = inputWeight1 * learningRate * err
+	inputWeight2 = inputWeight2 * learningRate * err
+	outputWeight = outputWeight * learningRate * err
 
 
 
@@ -63,12 +68,20 @@ def Sigmoid(x):
 if __name__=='__main__':
 
 	pointer = 0
+	holdOutNumber = firstInput * 2
+	trainingData = 200 - holdOutNumber
+	trainingCounter = 0
+	testingCounter = 0
 	#Pull from User input
 	FillLists(secondInput)
 
+	while (trainingCounter < trainingData)
 
-	#put loop here
-	HFunction(pointer)
+		#put loop here
+		HFunction(trainingCounter)
 
-	#back propogation
+		#back propogation
+		BackProp(err)
+		trainingCounter +=
 
+	
