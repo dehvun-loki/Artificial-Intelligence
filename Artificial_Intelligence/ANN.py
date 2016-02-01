@@ -41,7 +41,7 @@ def HFunction(pointer):
 	y2 = (secondInput[pointer] * inputWeight2[weightPointer])
 	y = y1+y2
 
-	mathStuff = outputWeight[weightPointer] * Sigmoid(y)
+	return mathStuff = outputWeight[weightPointer] * Sigmoid(y)
 
 	#make a list of mathStuffs
 	#Add all together
@@ -78,10 +78,14 @@ if __name__=='__main__':
 	while (trainingCounter < trainingData)
 
 		#put loop here
-		HFunction(trainingCounter)
+		err = HFunction(trainingCounter)-output(trainingCounter)
 
 		#back propogation
 		BackProp(err)
 		trainingCounter +=
 
-	
+	while (testingCounter<holdOutNumber)
+
+		err = HFunction(trainingCounter+testingCounter)-output(trainingCounter)
+
+		testingCounter +=
