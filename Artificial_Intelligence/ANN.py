@@ -8,7 +8,7 @@ import argparse
 
 
 def FillLists(numHidden):
-	global firstInputList, secondInputList, output, inputWeight1, inputWeight2, outputWeight
+	global firstInputList, secondInputList, output, inputWeight1, inputWeight2, outputWeight, holdOutNumber, trainingData, secondInput
 
 
 	test = open("Hello.txt","r")
@@ -37,8 +37,9 @@ def FillLists(numHidden):
 		inputWeight2.append(random.uniform(-1,1))
 		outputWeight.append(random.uniform(-1,1))
 		counter+=1
-
-	return firstInput, secondInput, output, inputWeight1, inputWeight2, outputWeight
+	holdOutNumber = secondInput * len(output)
+	trainingData = len(output) - holdOutNumber
+	return firstInput, secondInput, output, inputWeight1, inputWeight2, outputWeight, holdOutNumber, trainingData
 
 
 def HFunction(pointer):
@@ -105,7 +106,7 @@ def BackProp(err):
 
 if __name__=='__main__':
 
-	global firstInputList, secondInputList, output, inputWeight1, inputWeight2, outputWeight, learningRate, decay
+	global firstInputList, secondInputList, output, inputWeight1, inputWeight2, outputWeight, learningRate, decay, secondInput, holdOutNumber, trainingData
 
 	myopts, args = getopt.getopt(sys.argv[1:], "i:o:")
 
@@ -117,20 +118,18 @@ if __name__=='__main__':
 	if(len(args)>4):
 		secondInput = float(args[3])
 
-	holdOutNumber = secondInput * 200
-	trainingData = 200 - holdOutNumber
 	trainingCounter = 0
 	testingCounter = 0
 	errorList = []
 	zeroCount = 0
 	timesDone = 0
-	maxRepeats = 50
-	learningRate = .01
+	maxRepeats = 250
+	learningRate = .1
 	decay = .99
 
 	#Pull from User input
 	FillLists(firstInput)
-	print(outputWeight)
+	#print(outputWeight)
 	while (timesDone < maxRepeats):
 		trainingCounter = 0
 		while (trainingCounter < trainingData):
@@ -157,5 +156,5 @@ if __name__=='__main__':
 			zeroCount+=1
 	zeroCount = (zeroCount/(len(errorList))*100)
 
-	print (outputWeight)
+	#print (outputWeight)
 	print("There are ", zeroCount, " percent correct")
