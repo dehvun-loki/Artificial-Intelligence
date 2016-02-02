@@ -120,7 +120,7 @@ if __name__=='__main__':
 			secondInput = float(args[4])
 
 	test = open(fileName,"r")
-	
+
 
 	print(firstInput, " ",secondInput)
 	trainingCounter = 0
