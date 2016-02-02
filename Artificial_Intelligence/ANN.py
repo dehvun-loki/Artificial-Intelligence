@@ -109,16 +109,20 @@ if __name__=='__main__':
 
 	firstInput=5
 	secondInput=.2
-
 	fileName = args[0]
 
-	if(len(args)>2):
-		firstInput = float(args[2])
-	if(len(args)>4):
-		secondInput = float(args[4])
+	if(len(args)>=3):
+		if (args[1] == "h"):
+			firstInput = float(args[2])
+		elif (args[1] == "p"):
+			secondInput = float(args[2])
+	if(len(args)>=5):
+			secondInput = float(args[4])
 
 	test = open(fileName,"r")
+	
 
+	print(firstInput, " ",secondInput)
 	trainingCounter = 0
 	testingCounter = 0
 	errorList = []
