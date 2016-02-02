@@ -8,10 +8,7 @@ import argparse
 
 
 def FillLists(numHidden):
-	global firstInputList, secondInputList, output, inputWeight1, inputWeight2, outputWeight, holdOutNumber, trainingData, secondInput
-
-
-	test = open("Hello.txt","r")
+	global test, firstInputList, secondInputList, output, inputWeight1, inputWeight2, outputWeight, holdOutNumber, trainingData, secondInput
 	
 	
 	firstInputList = []
@@ -113,10 +110,14 @@ if __name__=='__main__':
 	firstInput=5
 	secondInput=.2
 
+	fileName = args[0]
+
 	if(len(args)>2):
-		firstInput = float(args[1])
+		firstInput = float(args[2])
 	if(len(args)>4):
-		secondInput = float(args[3])
+		secondInput = float(args[4])
+
+	test = open(fileName,"r")
 
 	trainingCounter = 0
 	testingCounter = 0
