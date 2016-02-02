@@ -4,7 +4,6 @@ import math
 import random
 import sys
 import getopt
-import argparse
 
 
 def FillLists(numHidden):
@@ -36,8 +35,7 @@ def FillLists(numHidden):
 		counter+=1
 	holdOutNumber = secondInput * len(output)
 	trainingData = len(output) - holdOutNumber
-	return firstInput, secondInput, output, inputWeight1, inputWeight2, outputWeight, holdOutNumber, trainingData
-
+	
 
 def HFunction(pointer):
 	global firstInputList, secondInputList, output, inputWeight1, inputWeight2, outputWeight
@@ -119,10 +117,10 @@ if __name__=='__main__':
 	if(len(args)>=5):
 			secondInput = float(args[4])
 
-	test = open(fileName,"r")
+	test = open("hw5data.txt","r")
 
 
-	print(firstInput, " ",secondInput)
+	print("h: ",firstInput, " p: ",secondInput)
 	trainingCounter = 0
 	testingCounter = 0
 	errorList = []
